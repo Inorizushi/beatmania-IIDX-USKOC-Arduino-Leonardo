@@ -49,8 +49,8 @@ leoo.ino uses the following pins:
 | Turntable Enc Channel A |  0  |
 | Turntable Enc Channel B |  1  |
 
-## Playstation compatibility
-(From CrazyRedMachine's Ultimate Pop'n Controller)
+## Playstation compatibility (From CrazyRedMachine's Ultimate Pop'n Controller)
+
 Arduino Leonardo version is also compatible with Playstation and Playstation 2 (it can be made to be plugged directly to the controller port, using the following pinout).
 
 ![pinout_psx](https://github.com/CrazyRedMachine/UltimatePopnController/blob/master/pinout_leonardo_psx.png?raw=true)
