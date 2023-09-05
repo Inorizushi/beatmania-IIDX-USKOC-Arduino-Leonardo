@@ -47,4 +47,4 @@ leoo.ino uses the following pins:
 
 ## Acknowledgments:
 
-]CrazyRedMachine's Ultimate Pop'n Controller](https://github.com/CrazyRedMachine/UltimatePopnController): PS2 Code/Handling
+[CrazyRedMachine's Ultimate Pop'n Controller](https://github.com/CrazyRedMachine/UltimatePopnController): PS2 Code/Handling
