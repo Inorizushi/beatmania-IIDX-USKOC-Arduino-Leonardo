@@ -22,17 +22,29 @@ leoo.ino uses the following pins:
 | Item                    | Pin |
 |-------------------------|-----|
 | **Buttons**             |     |
-| Btn 1 Switch            | A0  |
-| Btn 2 Switch            | A1  |
-| Btn 3 Switch            | A2  |
-| Btn 4 Switch            | A3  |
-| Btn 5 Switch            | A4  |
-| Btn 6 Switch            | A5  |
-| Btn 7 Switch            | 13  |
-| Btn 8 Switch (Star)     | 12  |
-| Btn 9 Switch (Select)   | 11  |
+| Btn 1 Switch            |  2  |
+| Btn 2 Switch            |  3  |
+| Btn 3 Switch            |  4  |
+| Btn 4 Switch            |  5  |
+| Btn 5 Switch            |  6  |
+| Btn 6 Switch            |  7  |
+| Btn 7 Switch            |  8  |
+| Btn 8 Switch (Start)    |  9  |
+| Btn 9 Switch (Select)   | 10  |
+| **LEDs**                |     |
+| Btn 1 LED               |  11 |
+| Btn 2 LED               |  12 |
+| Btn 3 LED               |  13 |
+| Btn 4 LED               |  A0 |
+| Btn 5 LED               |  A1 |
+| Btn 6 LED               |  A2 |
+| Btn 7 LED               |  A3 |
+| Btn 8 LED (Start)       |  A4 |
+| Btn 9 LED (Select)      |  A5 |
 | **Encoders**            |     |
 | Turntable Enc Channel A |  0  |
 | Turntable Enc Channel B |  1  |
 
+## Acknowledgments:
 
+]CrazyRedMachine's Ultimate Pop'n Controller](https://github.com/CrazyRedMachine/UltimatePopnController): PS2 Code/Handling
