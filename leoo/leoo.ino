@@ -11,7 +11,7 @@ iivxReport_t report;
 #define ENC_L_A 0
 #define ENC_L_B 1
 #define ENC_L_B_ADDR 3
-#define ENCODER_SENSITIVITY (double) 0.4959
+#define ENCODER_SENSITIVITY (double) 0.2000
 #define ENCODER_PORT PIND
 // encoder sensitivity = number of positions per rotation (400) / number of positions for HID report (256)
 /*
@@ -25,9 +25,9 @@ int tmp;
 uint8_t buttonCount = 9;
 uint8_t lightMode = 0;
 // 0 = reactive lighting, 1 = HID lighting
-uint8_t ledPins[] = {2,3,4,5,6,7,8,9,10};
-uint8_t buttonPins[] = {11,12,13,18,19,20,21,22,23};
-uint8_t sysPin = 0;
+uint8_t ledPins[] = {11,12,13,18,19,20,21,22,23};
+uint8_t buttonPins[] = {2,3,4,5,6,7,8,9,10};
+uint8_t sysPin = 24;
 int32_t encL=0;
 /* current pin layout
  *  pins 1 to 9 = LED 1 to 9
@@ -61,6 +61,11 @@ void lights(uint8_t lightDesc){
   }
 }
 
+#define WITH_PSX 1
+#if WITH_PSX == 1
+#include "ps2.h"
+#endif
+
 void setup() {
   delay(1000);
   // Setup I/O for pins
@@ -74,6 +79,23 @@ void setup() {
   pinMode(ENC_L_A,INPUT_PULLUP);
   pinMode(ENC_L_B,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(ENC_L_A), doEncL, RISING);
+
+  #if WITH_PSX == 1
+  PS2_MapInput(&report.buttons, (1<<0),  PS2_SQUARE);
+  PS2_MapInput(&report.buttons, (1<<1),  PS2_L1);
+  PS2_MapInput(&report.buttons, (1<<2),  PS2_CROSS);
+  PS2_MapInput(&report.buttons, (1<<3),  PS2_R1);
+  PS2_MapInput(&report.buttons, (1<<4),  PS2_CIRCLE);
+  PS2_MapInput(&report.buttons, (1<<5),  PS2_L2);
+  PS2_MapInput(&report.buttons, (1<<6),  PS2_LEFT);
+  PS2_MapInput(&report.buttons, (1<<7),  PS2_START);
+  PS2_MapInput(&report.buttons, (1<<8), PS2_SELECT);
+  PS2_MapInput(&report.buttons, (1<<10),  PS2_DOWN);
+  PS2_MapInput(&report.buttons, (1<<11), PS2_UP);
+  
+  PS2_Init();
+
+#endif
 }
 
 void loop() {
@@ -109,9 +131,12 @@ void loop() {
       report.buttons &= ~((uint16_t)1 << 11);
     }
   }
-  
+  #if WITH_PSX == 1
+    PS2_Task();
+  #endif
+  lights(report.buttons);
   // Light LEDs
-  if(lightMode==0){
+  /*if(lightMode==0){
     lights(report.buttons);
   } else {
     lights(iivx_led);
@@ -127,7 +152,7 @@ void loop() {
     } else if (report.buttons == 64){
       report.buttons = (uint16_t)1 << 10;
     }
-  }
+  }*/
   // Send report and delay
   iivx.setState(&report);
   delayMicroseconds(REPORT_DELAY);
